@@ -1,1 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>SITE-66 // FROSTMIRE // PSYCHOLOGICAL</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --paper:#d9ddd8;
+    --blood:#720e14;
+    --ice:#dceff2;
+    --ink:#101619;
+    --faded:#394347;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+body {
+    margin:0;
+    min-height:100vh;
+
+    background:
+        radial-gradient(circle at 15% 20%,rgba(255,255,255,.1),transparent 25%),
+        linear-gradient(135deg,#171c1d,#080b0c 60%,#151919);
+
+    font-family:"Special Elite",monospace;
+    color:var(--ink);
+}
+
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:50;
+
+    background:
+        radial-gradient(circle at 15% 20%,white 0 1px,transparent 3px),
+        radial-gradient(circle at 75% 65%,white 0 2px,transparent 4px);
+
+    background-size:190px 190px,270px 270px;
+    opacity:.35;
+}
+
+.file {
+    position:relative;
+
+    width:min(1150px,94%);
+    margin:50px auto;
+
+    padding:50px 60px 65px;
+
+    background:var(--paper);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.75),
+        0 0 0 8px rgba(40,45,46,.35);
+
+    transform:rotate(.3deg);
+
+    overflow:hidden;
+}
+
+.file::after {
+    content:"";
+    position:absolute;
+    top:-20px;
+    right:-50px;
+
+    width:300px;
+    height:250px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.9),
+        rgba(197,222,226,.7),
+        transparent 75%
+    );
+
+    clip-path:polygon(
+        20% 0,100% 0,100% 65%,
+        78% 48%,60% 72%,40% 45%,20% 60%
+    );
+}
+
+.blood {
+    position:absolute;
+    left:100px;
+    top:0;
+
+    width:75px;
+    height:330px;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(114,14,20,.7),
+        transparent
+    );
+
+    clip-path:polygon(
+        25% 0,75% 0,60% 35%,
+        80% 65%,45% 100%,
+        30% 70%,15% 100%,30% 45%
+    );
+
+    opacity:.3;
+}
+
+header {
+    border-bottom:3px solid var(--blood);
+    padding-bottom:25px;
+    position:relative;
+    z-index:2;
+}
+
+.classification {
+    display:inline-block;
+
+    padding:7px 13px;
+
+    background:var(--blood);
+    color:white;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+h1 {
+    margin:18px 0 0;
+
+    font-size:clamp(35px,6vw,64px);
+}
+
+.codename {
+    font-family:"Caveat",cursive;
+    font-size:35px;
+    color:var(--blood);
+    transform:rotate(-3deg);
+    display:inline-block;
+}
+
+.meta {
+    margin-top:15px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 25px;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+}
+
+.status {
+    background:var(--blood);
+    color:white;
+    padding:5px 10px;
+}
+
+nav {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:25px 0 35px;
+}
+
+nav a {
+    padding:10px 15px;
+
+    color:white;
+    background:#252d2f;
+
+    border:1px solid #4b5658;
+
+    text-decoration:none;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+}
+
+nav a:hover,
+nav a.active {
+    background:var(--blood);
+}
+
+.title {
+    display:inline-block;
+
+    margin:35px 0 18px;
+
+    border-bottom:2px solid var(--blood);
+    padding-bottom:5px;
+
+    font-size:22px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transform:rotate(-1deg);
+}
+
+.section {
+    padding:27px 32px;
+
+    background:rgba(255,255,255,.2);
+
+    border-left:4px solid var(--blood);
+
+    line-height:1.85;
+}
+
+.assessment {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.card {
+    padding:24px;
+
+    background:rgba(255,255,255,.2);
+
+    border:1px solid rgba(50,60,62,.4);
+}
+
+.card h3 {
+    margin-top:0;
+
+    color:var(--blood);
+
+    border-bottom:1px dashed var(--blood);
+    padding-bottom:8px;
+}
+
+.note {
+    margin:25px 0;
+
+    padding:20px;
+
+    font-family:"Caveat",cursive;
+    font-size:26px;
+
+    color:var(--blood);
+
+    transform:rotate(-1.5deg);
+
+    border-left:3px solid var(--blood);
+}
+
+.warning {
+    padding:22px;
+
+    border:2px solid var(--blood);
+
+    color:var(--blood);
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:12px;
+
+    background:repeating-linear-gradient(
+        -8deg,
+        rgba(114,14,20,.08) 0,
+        rgba(114,14,20,.08) 2px,
+        transparent 2px,
+        transparent 9px
+    );
+}
+
+footer {
+    margin-top:55px;
+    padding-top:18px;
+
+    border-top:2px solid #4d5556;
+
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:10px;
+}
+
+.red {
+    color:var(--blood);
+}
+
+@media(max-width:750px) {
+    .file {
+        width:96%;
+        padding:35px 25px 50px;
+        margin:20px auto;
+    }
+
+    .assessment {
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="file">
+
+<div class="blood"></div>
+
+<header>
+
+<div class="classification">
+SCP FOUNDATION // MEDICAL / PSYCHOLOGICAL RECORD
+</div>
+
+<h1>ELISE BELMONT</h1>
+
+<div class="codename">
+"Frostmire"
+</div>
+
+<div class="meta">
+<span class="status">● ACTIVE</span>
+<span>SITE-66</span>
+<span>PSYCHOLOGICAL FILE</span>
+<span>RESTRICTED</span>
+</div>
+
+</header>
+
+<nav>
+<a href="index.html">PERSONNEL FILE</a>
+<a class="active" href="psychological.html">PSYCHOLOGICAL</a>
+<a href="relations.html">RELATIONS</a>
+</nav>
+
+<h2 class="title">
+Psychological Overview
+</h2>
+
+<section class="section">
+
+<p>
+Elise Belmont presents as a straightforward individual with a
+generally restrained interpersonal style. She is not particularly
+inclined toward unnecessary conversation and has demonstrated a
+preference for direct communication.
+</p>
+
+<p>
+Despite this reserved nature, Belmont has repeatedly demonstrated a
+willingness to employ violence when she considers it necessary.
+Personnel reports indicate that this tendency does not appear to
+prevent her from maintaining close interpersonal relationships.
+</p>
+
+<p>
+Belmont is frequently approached by personnel seeking someone willing
+to listen without immediately judging or attempting to intervene.
+Several individuals have informally described this behavior as
+"therapist-like."
+</p>
+
+<div class="note">
+"She listens first. That's probably why people keep coming back."
+</div>
+
+</section>
+
+<h2 class="title">
+Documented Conditions
+</h2>
+
+<div class="assessment">
+
+<section class="card">
+
+<h3>PTSD</h3>
+
+<p>
+Belmont experiences PTSD associated with the death of her mother,
+Klara Frenken, in a motor vehicle accident.
+</p>
+
+<p>
+The incident occurred during Belmont's childhood and remains a
+significant component of her psychological history.
+</p>
+
+</section>
+
+<section class="card">
+
+<h3>INSOMNIA</h3>
+
+<p>
+Subject reports persistent difficulty maintaining regular sleep
+patterns.
+</p>
+
+<p>
+Resulting fatigue has been documented during nighttime operations and
+other extended periods of activity.
+</p>
+
+</section>
+
+</div>
+
+<h2 class="title">
+Behavioral Assessment
+</h2>
+
+<section class="section">
+
+<p>
+Belmont's history has not resulted in an observable abandonment of
+responsibility or interpersonal loyalty. Instead, she appears to
+maintain a strong tendency toward protecting individuals who have
+earned her trust.
+</p>
+
+<p>
+Her willingness to function as a support pillar for others is one of
+the more consistent characteristics documented in her personnel
+record.
+</p>
+
+<p>
+This behavior is particularly notable given her own history of
+isolation following the death of her mother and subsequent
+estrangement from her father.
+</p>
+
+<p>
+Belmont's military background and later work as a contractor appear to
+have reinforced an independent approach to problem solving.
+</p>
+
+</section>
+
+<h2 class="title">
+Operational Psychology
+</h2>
+
+<section class="section">
+
+<p>
+Subject demonstrates a mixed operational profile. She possesses
+long-range reconnaissance skills associated with her mother's
+background while also displaying a willingness to engage targets at
+close range.
+</p>
+
+<p>
+This produces a flexible but broad skill set rather than a single
+highly specialized operational discipline.
+</p>
+
+<p>
+Belmont's tendency to protect individuals she considers part of her
+circle should be considered when assigning personnel to prolonged
+operations.
+</p>
+
+</section>
+
+<h2 class="title">
+Historical Psychological Factors
+</h2>
+
+<section class="section">
+
+<p>
+Following the death of Klara Frenken, Rios Belmont reportedly
+distanced himself from Elise after recovering from the accident.
+Elise interpreted the resulting separation as a significant
+development in her life.
+</p>
+
+<p>
+Her subsequent decision to leave high school and enter military
+service mirrored the career path of her father.
+</p>
+
+<p>
+After leaving the military, she began searching independently for
+information concerning Rios. This investigation ultimately contributed
+to her discovery near the Veil in Alaska.
+</p>
+
+<div class="note">
+"Whatever happened between them, she never stopped looking for him."
+</div>
+
+</section>
+
+<h2 class="title">
+Medical Warning
+</h2>
+
+<div class="warning">
+
+MEDICAL RECORD // RESTRICTED
+
+<br><br>
+
+PTSD: DOCUMENTED<br>
+INSOMNIA: DOCUMENTED<br>
+NIGHTTIME FATIGUE: DOCUMENTED
+
+<br><br>
+
+Psychological information contained within this document is restricted
+to personnel with appropriate authorization.
+
+<br><br>
+
+FILE STATUS: ACTIVE
+
+</div>
+
+<footer>
+
+<div>SCP FOUNDATION // SITE-66</div>
+<div class="red">MEDICAL RECORD // RESTRICTED</div>
+<div>PAGE 02 // PSYCHOLOGICAL</div>
+
+</footer>
+
+</main>
+
+</body>
+</html>
