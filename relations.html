@@ -1,1 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>SITE-66 // FROSTMIRE // RELATIONS</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --paper:#d9ddd8;
+    --blood:#720e14;
+    --ice:#dceff2;
+    --ink:#101619;
+    --faded:#394347;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+body {
+    margin:0;
+    min-height:100vh;
+
+    background:
+        radial-gradient(circle at 20% 15%,rgba(255,255,255,.1),transparent 25%),
+        linear-gradient(135deg,#171c1d,#080b0c 60%,#151919);
+
+    color:var(--ink);
+    font-family:"Special Elite",monospace;
+}
+
+body::before {
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+    z-index:50;
+
+    background:
+        radial-gradient(circle at 10% 20%,white 0 1px,transparent 3px),
+        radial-gradient(circle at 70% 70%,white 0 2px,transparent 4px),
+        radial-gradient(circle at 90% 30%,white 0 1px,transparent 3px);
+
+    background-size:180px 180px,270px 270px,320px 320px;
+
+    opacity:.35;
+}
+
+.file {
+    position:relative;
+
+    width:min(1150px,94%);
+
+    margin:50px auto;
+
+    padding:50px 60px 65px;
+
+    background:var(--paper);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.75),
+        0 0 0 8px rgba(40,45,46,.35);
+
+    transform:rotate(-.25deg);
+
+    overflow:hidden;
+}
+
+.file::before {
+    content:"";
+
+    position:absolute;
+    top:-30px;
+    left:-30px;
+
+    width:260px;
+    height:220px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.95),
+        rgba(197,222,226,.65),
+        transparent 70%
+    );
+
+    clip-path:polygon(
+        0 0,100% 0,75% 30%,
+        95% 50%,60% 65%,45% 40%,20% 60%
+    );
+}
+
+.blood {
+    position:absolute;
+
+    right:90px;
+    top:0;
+
+    width:80px;
+    height:390px;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(114,14,20,.75),
+        transparent
+    );
+
+    clip-path:polygon(
+        30% 0,70% 0,60% 35%,
+        80% 60%,45% 100%,
+        25% 75%,15% 100%,30% 45%
+    );
+
+    opacity:.28;
+}
+
+header {
+    position:relative;
+    z-index:2;
+
+    border-bottom:3px solid var(--blood);
+
+    padding-bottom:25px;
+}
+
+.classification {
+    display:inline-block;
+
+    padding:7px 13px;
+
+    background:var(--blood);
+    color:white;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+h1 {
+    margin:18px 0 0;
+
+    font-size:clamp(35px,6vw,64px);
+}
+
+.codename {
+    display:inline-block;
+
+    color:var(--blood);
+
+    font-family:"Caveat",cursive;
+    font-size:35px;
+
+    transform:rotate(-3deg);
+}
+
+.meta {
+    margin-top:15px;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 25px;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+}
+
+.status {
+    background:var(--blood);
+    color:white;
+    padding:5px 10px;
+}
+
+nav {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin:25px 0 35px;
+}
+
+nav a {
+    padding:10px 15px;
+
+    color:white;
+    background:#252d2f;
+
+    border:1px solid #4b5658;
+
+    text-decoration:none;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+}
+
+nav a:hover,
+nav a.active {
+    background:var(--blood);
+}
+
+.title {
+    display:inline-block;
+
+    margin:35px 0 18px;
+
+    padding-bottom:5px;
+
+    border-bottom:2px solid var(--blood);
+
+    font-size:22px;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transform:rotate(-1deg);
+}
+
+.title::after {
+    content:" ///";
+    color:var(--blood);
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+}
+
+.card {
+    padding:25px;
+
+    background:rgba(255,255,255,.2);
+
+    border:1px solid rgba(40,50,52,.4);
+
+    box-shadow:7px 7px 0 rgba(50,60,62,.1);
+}
+
+.card:nth-child(odd) {
+    transform:rotate(-.5deg);
+}
+
+.card:nth-child(even) {
+    transform:rotate(.5deg);
+}
+
+.card h3 {
+    margin-top:0;
+
+    color:var(--blood);
+
+    border-bottom:1px dashed var(--blood);
+
+    padding-bottom:8px;
+}
+
+.active {
+    color:#204e32;
+    font-family:"Share Tech Mono",monospace;
+}
+
+.deceased {
+    color:var(--blood);
+    font-family:"Share Tech Mono",monospace;
+}
+
+.section {
+    padding:25px 30px;
+
+    background:rgba(255,255,255,.2);
+
+    border-left:4px solid var(--blood);
+
+    line-height:1.8;
+}
+
+.possession {
+    margin:15px 0;
+
+    padding:20px;
+
+    border-left:4px solid var(--blood);
+
+    background:rgba(255,255,255,.18);
+}
+
+.possession strong {
+    display:block;
+
+    color:var(--blood);
+
+    margin-bottom:8px;
+}
+
+.note {
+    display:inline-block;
+
+    color:var(--blood);
+
+    font-family:"Caveat",cursive;
+
+    font-size:25px;
+
+    transform:rotate(-2deg);
+
+    margin:15px 0;
+}
+
+.record {
+    padding:22px;
+
+    border:2px solid var(--blood);
+
+    color:var(--blood);
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+
+    background:repeating-linear-gradient(
+        -8deg,
+        rgba(114,14,20,.08) 0,
+        rgba(114,14,20,.08) 2px,
+        transparent 2px,
+        transparent 9px
+    );
+}
+
+footer {
+    margin-top:55px;
+
+    padding-top:18px;
+
+    border-top:2px solid #4d5556;
+
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:10px;
+}
+
+.red {
+    color:var(--blood);
+}
+
+@media(max-width:750px) {
+
+    .file {
+        width:96%;
+        padding:35px 25px 50px;
+        margin:20px auto;
+    }
+
+    .grid {
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="file">
+
+<div class="blood"></div>
+
+<header>
+
+<div class="classification">
+SCP FOUNDATION // RELATIONAL ARCHIVE
+</div>
+
+<h1>ELISE BELMONT</h1>
+
+<div class="codename">
+"Frostmire"
+</div>
+
+<div class="meta">
+<span class="status">● ACTIVE</span>
+<span>SITE-66</span>
+<span>RELATIONAL FILE</span>
+<span>RESTRICTED</span>
+</div>
+
+</header>
+
+<nav>
+<a href="index.html">PERSONNEL FILE</a>
+<a href="psychological.html">PSYCHOLOGICAL</a>
+<a class="active" href="relations.html">RELATIONS</a>
+</nav>
+
+<h2 class="title">
+Immediate Family
+</h2>
+
+<div class="grid">
+
+<section class="card">
+
+<h3>
+RIOS BELMONT
+</h3>
+
+<p>
+<strong>RELATION:</strong> Father
+</p>
+
+<p class="active">
+[ ACTIVE / FORMER FOUNDATION PERSONNEL ]
+</p>
+
+<p>
+Rios Belmont served as a Foundation General Security operative and
+remains the most significant known familial connection within Elise
+Belmont's personnel record.
+</p>
+
+<p>
+Elise spent a significant portion of her adult life attempting to
+locate information concerning her father.
+</p>
+
+<p>
+External record:
+<a
+href="https://docs.google.com/presentation/d/16TETFWsq7wJqfXkEkLLCHPP8SUppJM87UHhL35kS_A8/edit?usp=sharing"
+target="_blank"
+rel="noopener noreferrer">
+ACCESS
+</a>
+</p>
+
+<p>
+Foundation archive:
+<a
+href="https://syloktheprofane.github.io/experiment/index.html"
+target="_blank"
+rel="noopener noreferrer">
+ACCESS
+</a>
+</p>
+
+</section>
+
+<section class="card">
+
+<h3>
+KLARA FRENKEN
+</h3>
+
+<p>
+<strong>RELATION:</strong> Mother
+</p>
+
+<p class="deceased">
+[ DECEASED ]
+</p>
+
+<p>
+Klara Frenken was killed in a motor vehicle accident shortly after
+Elise's birth.
+</p>
+
+<p>
+The accident also resulted in Rios Belmont sustaining serious injuries.
+</p>
+
+</section>
+
+</div>
+
+<h2 class="title">
+Foundation Relationships
+</h2>
+
+<section class="section">
+
+<p>
+Following her discovery near Alaska and subsequent Foundation
+assessment, Elise Belmont was accepted into Foundation service as a
+General Security Operator.
+</p>
+
+<p>
+Her relationship with former Foundation operative Rios Belmont was
+documented during intake.
+</p>
+
+<p>
+Her file also contains cross-references to the operative known as
+<strong>"Felwinter"</strong>.
+</p>
+
+<p>
+The nature and history of individual Foundation relationships remain
+restricted to their respective personnel records.
+</p>
+
+<div class="note">
+"Family doesn't disappear just because the file says REDACTED."
+</div>
+
+</section>
+
+<h2 class="title">
+Known Associations
+</h2>
+
+<div class="grid">
+
+<section class="card">
+
+<h3>
+GENERAL SECURITY
+</h3>
+
+<p>
+<strong>ASSOCIATION:</strong>
+General Security Department
+</p>
+
+<p>
+<strong>STATUS:</strong>
+<span class="active">ACTIVE</span>
+</p>
+
+<p>
+Belmont operates within the Foundation's General Security structure
+following her acceptance into Foundation service.
+</p>
+
+</section>
+
+<section class="card">
+
+<h3>
+"FELWINTER"
+</h3>
+
+<p>
+<strong>IDENTITY:</strong>
+Rios Belmont
+</p>
+
+<p>
+<strong>RELATION:</strong>
+Father / Foundation Operative
+</p>
+
+<p>
+This relationship represents a significant cross-reference within the
+Belmont archival record.
+</p>
+
+</section>
+
+</div>
+
+<h2 class="title">
+Personal Possessions
+</h2>
+
+<section>
+
+<div class="possession">
+
+<strong>OLD WRISTWATCH</strong>
+
+The watch was formerly worn by Rios Belmont before being given to
+Elise prior to his departure.
+
+</div>
+
+<div class="possession">
+
+<strong>ARMORED JACKET</strong>
+
+A jacket fitted with armor plates. The initials
+<em>E.B.</em> are embroidered upon the collar.
+
+</div>
+
+<div class="possession">
+
+<strong>CUSTOM ENGRAVED KNIFE</strong>
+
+The knife carried by Elise contains the inscription:
+
+<div class="note">
+"Even the harshest winters cannot freeze the heart."
+</div>
+
+</div>
+
+</section>
+
+<h2 class="title">
+Relational Archive Notes
+</h2>
+
+<section class="section">
+
+<p>
+Subject maintains a reputation for listening to personnel experiencing
+personal difficulties and acting as a support pillar for individuals
+who have established a close relationship with her.
+</p>
+
+<p>
+Her familial history and the circumstances surrounding her entry into
+Foundation service remain relevant to her relational profile.
+</p>
+
+<p>
+No additional family members have been entered into the current
+accessible record.
+</p>
+
+</section>
+
+<h2 class="title">
+Archive Integrity
+</h2>
+
+<div class="record">
+
+RELATIONAL DATABASE // PARTIAL RECOVERY
+
+<br><br>
+
+SUBJECT:
+BELMONT, ELISE
+
+<br>
+
+CALLSIGN:
+"FROSTMIRE"
+
+<br>
+
+STATUS:
+ACTIVE
+
+<br><br>
+
+KNOWN CROSS-REFERENCES:
+
+BELMONT, RIOS // "FELWINTER"<br>
+FRENKEN, KLARA // DECEASED<br>
+SITE-66 // GENERAL SECURITY
+
+<br><br>
+
+ARCHIVAL DAMAGE:
+ICE / BLOOD / MOISTURE
+
+<br>
+
+FILE INTEGRITY: 58%
+
+<br><br>
+
+WARNING:
+
+SOME RELATIONSHIPS MAY EXIST OUTSIDE THE
+CURRENTLY RECOVERED ARCHIVE.
+
+</div>
+
+<footer>
+
+<div>SCP FOUNDATION // SITE-66</div>
+<div class="red">RELATIONAL ARCHIVE // RESTRICTED</div>
+<div>PAGE 03 // RELATIONS</div>
+
+</footer>
+
+</main>
+
+</body>
+</html>
