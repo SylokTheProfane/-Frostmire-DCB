@@ -1,1 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>SITE-66 // ELISE BELMONT // FROSTMIRE</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --paper:#d9ddd8;
+    --paper-dark:#b8bfbc;
+    --ice:#dceff2;
+    --ice-dark:#91aeb5;
+    --blood:#720e14;
+    --blood-dark:#3b080c;
+    --blood-bright:#a51d26;
+    --ink:#101619;
+    --faded:#394347;
+}
+
+* {
+    box-sizing:border-box;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    margin:0;
+    min-height:100vh;
+
+    background:
+        radial-gradient(circle at 20% 10%,rgba(255,255,255,.12),transparent 25%),
+        radial-gradient(circle at 80% 90%,rgba(100,120,125,.18),transparent 30%),
+        linear-gradient(135deg,#171c1d,#080b0c 55%,#151919);
+
+    color:var(--ink);
+    font-family:"Special Elite",monospace;
+}
+
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:50;
+
+    background:
+        radial-gradient(circle at 10% 20%,rgba(255,255,255,.15) 0 2px,transparent 3px),
+        radial-gradient(circle at 30% 80%,rgba(255,255,255,.13) 0 1px,transparent 3px),
+        radial-gradient(circle at 70% 30%,rgba(255,255,255,.12) 0 2px,transparent 4px),
+        radial-gradient(circle at 90% 70%,rgba(255,255,255,.1) 0 2px,transparent 4px);
+
+    background-size:180px 180px,230px 230px,270px 270px,320px 320px;
+    opacity:.45;
+}
+
+.file {
+    position:relative;
+    width:min(1180px,94%);
+    margin:50px auto;
+    padding:50px 60px 65px;
+
+    background:
+        linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,0)),
+        var(--paper);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.75),
+        0 0 0 8px rgba(40,45,46,.35);
+
+    transform:rotate(-.35deg);
+    overflow:hidden;
+}
+
+.file::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
+    background:repeating-linear-gradient(
+        0deg,
+        transparent 0,
+        rgba(0,0,0,.025) 1px,
+        transparent 2px
+    );
+}
+
+.file::after {
+    content:"";
+    position:absolute;
+    top:-40px;
+    right:-20px;
+    width:300px;
+    height:260px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.95),
+        rgba(197,222,226,.75),
+        rgba(145,174,181,.3),
+        transparent 70%
+    );
+
+    clip-path:polygon(
+        20% 0,100% 0,100% 70%,
+        80% 55%,60% 72%,45% 45%,25% 55%
+    );
+
+    opacity:.8;
+}
+
+.snow-top {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:25px;
+
+    background:linear-gradient(
+        to bottom,
+        white,
+        rgba(215,236,239,.7),
+        transparent
+    );
+
+    clip-path:polygon(
+        0 0,100% 0,100% 55%,
+        92% 35%,83% 65%,70% 35%,
+        58% 70%,44% 40%,31% 68%,
+        18% 32%,7% 60%,0 35%
+    );
+}
+
+.blood {
+    position:absolute;
+    top:20px;
+    right:90px;
+
+    width:80px;
+    height:400px;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(114,14,20,.75),
+        rgba(114,14,20,.3),
+        transparent
+    );
+
+    clip-path:polygon(
+        30% 0,70% 0,75% 30%,
+        60% 52%,80% 100%,
+        40% 78%,25% 100%,35% 45%
+    );
+
+    opacity:.3;
+    transform:rotate(5deg);
+}
+
+header {
+    position:relative;
+    z-index:2;
+
+    border-bottom:3px solid var(--blood);
+    padding-bottom:24px;
+    margin-bottom:28px;
+}
+
+.classification {
+    display:inline-block;
+    padding:7px 13px;
+
+    background:var(--blood);
+    color:white;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+h1 {
+    margin:18px 0 0;
+
+    font-size:clamp(38px,6vw,70px);
+    letter-spacing:3px;
+}
+
+.codename {
+    display:inline-block;
+
+    font-family:"Caveat",cursive;
+    font-size:36px;
+
+    color:var(--blood);
+    transform:rotate(-3deg);
+}
+
+.meta {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 25px;
+
+    margin-top:18px;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:12px;
+}
+
+.status {
+    background:var(--blood);
+    color:white;
+    padding:5px 10px;
+
+    animation:glitch 2.5s infinite;
+}
+
+@keyframes glitch {
+    0%,90%,100% {opacity:1;}
+    92% {opacity:.3;transform:translateX(3px);}
+    94% {opacity:.8;transform:translateX(-2px);}
+}
+
+nav {
+    position:relative;
+    z-index:5;
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin:25px 0 35px;
+}
+
+nav a {
+    padding:10px 15px;
+
+    color:white;
+    background:#252d2f;
+
+    border:1px solid #4b5658;
+    text-decoration:none;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+nav a:hover,
+nav a.active {
+    background:var(--blood);
+    border-color:var(--blood);
+}
+
+.quote {
+    padding:20px 30px;
+    margin:25px 0 35px;
+
+    border-left:5px solid var(--blood);
+    background:rgba(255,255,255,.25);
+
+    font-family:"Caveat",cursive;
+    font-size:27px;
+
+    transform:rotate(-.5deg);
+}
+
+.quote small {
+    display:block;
+    margin-top:8px;
+
+    font-family:"Special Elite",monospace;
+    font-size:11px;
+}
+
+.title {
+    display:inline-block;
+
+    margin:35px 0 18px;
+
+    padding-bottom:5px;
+
+    border-bottom:2px solid var(--blood);
+
+    font-size:22px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+
+    transform:rotate(-1deg);
+}
+
+.title::after {
+    content:" ///";
+    color:var(--blood);
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.card {
+    padding:25px;
+
+    background:rgba(255,255,255,.22);
+    border:1px solid rgba(30,40,42,.4);
+
+    box-shadow:8px 8px 0 rgba(54,64,66,.12);
+}
+
+.card:nth-child(even) {
+    transform:rotate(.5deg);
+}
+
+.card:nth-child(odd) {
+    transform:rotate(-.4deg);
+}
+
+.card h3 {
+    margin-top:0;
+
+    color:var(--blood);
+    font-size:17px;
+
+    border-bottom:1px dashed var(--blood);
+    padding-bottom:8px;
+}
+
+.row {
+    margin:12px 0;
+    line-height:1.5;
+}
+
+.row strong {
+    display:block;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.row span {
+    color:var(--faded);
+}
+
+.appearance {
+    height:470px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(145deg,#202829,#68777a,#b7c8ca);
+
+    border:8px solid #242a2b;
+
+    box-shadow:
+        inset 0 0 30px rgba(0,0,0,.65),
+        10px 12px 0 rgba(0,0,0,.18);
+
+    color:white;
+    text-align:center;
+}
+
+.appearance::before {
+    content:"PHOTOGRAPHIC RECORD\A UNAVAILABLE / DAMAGED";
+
+    white-space:pre;
+
+    position:absolute;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:17px;
+    line-height:2;
+
+    color:rgba(255,255,255,.45);
+
+    transform:rotate(-8deg);
+}
+
+.appearance-image {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.section {
+    position:relative;
+
+    padding:25px 30px;
+
+    background:rgba(255,255,255,.2);
+    border-left:3px solid var(--blood);
+
+    line-height:1.8;
+}
+
+.handwritten {
+    display:inline-block;
+
+    margin:15px 0;
+
+    color:var(--blood);
+
+    font-family:"Caveat",cursive;
+    font-size:25px;
+
+    transform:rotate(-2deg);
+}
+
+.corruption {
+    margin-top:40px;
+    padding:22px;
+
+    border:2px solid var(--blood);
+
+    color:var(--blood);
+
+    background:repeating-linear-gradient(
+        -7deg,
+        rgba(114,14,20,.08) 0,
+        rgba(114,14,20,.08) 2px,
+        transparent 2px,
+        transparent 9px
+    );
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+footer {
+    margin-top:55px;
+    padding-top:18px;
+
+    border-top:2px solid #4d5556;
+
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+
+    font-family:"Share Tech Mono",monospace;
+    font-size:10px;
+}
+
+.warning {
+    color:var(--blood);
+    font-weight:bold;
+}
+
+@media(max-width:800px) {
+    .file {
+        width:96%;
+        margin:20px auto;
+        padding:35px 24px 50px;
+    }
+
+    .grid {
+        grid-template-columns:1fr;
+    }
+
+    h1 {
+        font-size:40px;
+    }
+
+    .blood {
+        right:10px;
+        opacity:.15;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main class="file">
+
+<div class="snow-top"></div>
+<div class="blood"></div>
+
+<header>
+
+<div class="classification">
+SCP FOUNDATION // GENERAL SECURITY DEPARTMENT
+</div>
+
+<h1>ELISE BELMONT</h1>
+
+<div class="codename">
+"Frostmire"
+</div>
+
+<div class="meta">
+<span class="status">● ACTIVE</span>
+<span>SITE-66 // PERSONNEL RECORD</span>
+<span>FILE ID: EB-072405</span>
+<span>CLASSIFICATION: LEVEL 3</span>
+</div>
+
+</header>
+
+<nav>
+<a class="active" href="index.html">PERSONNEL FILE</a>
+<a href="psychological.html">PSYCHOLOGICAL</a>
+<a href="relations.html">RELATIONS</a>
+</nav>
+
+<div class="quote">
+"Even the harshest winters cannot freeze the heart."
+<small>— Inscription found upon subject's personal knife</small>
+</div>
+
+<h2 class="title">Personnel Identification</h2>
+
+<div class="grid">
+
+<section class="card">
+
+<h3>Identity</h3>
+
+<div class="row">
+<strong>Legal Name</strong>
+<span>Elise Belmont</span>
+</div>
+
+<div class="row">
+<strong>Callsign</strong>
+<span>"Frostmire"</span>
+</div>
+
+<div class="row">
+<strong>Status</strong>
+<span>ACTIVE</span>
+</div>
+
+<div class="row">
+<strong>Gender</strong>
+<span>Female</span>
+</div>
+
+<div class="row">
+<strong>Date of Birth</strong>
+<span>07/24/2005</span>
+</div>
+
+<div class="row">
+<strong>Place of Birth</strong>
+<span>Colville Lake, Northwest Territories, Canada</span>
+</div>
+
+<div class="row">
+<strong>Occupation</strong>
+<span>General Contractor / Foundation General Security Operator</span>
+</div>
+
+</section>
+
+<section class="card">
+
+<h3>Physical Record</h3>
+
+<div class="row">
+<strong>Blood Type</strong>
+<span>A POS</span>
+</div>
+
+<div class="row">
+<strong>Height</strong>
+<span>5'11"</span>
+</div>
+
+<div class="row">
+<strong>Weight</strong>
+<span>180 lbs</span>
+</div>
+
+<div class="row">
+<strong>Body Type</strong>
+<span>Mesomorph</span>
+</div>
+
+<div class="row">
+<strong>Hair</strong>
+<span>Black with dirty blonde tips; tied back</span>
+</div>
+
+<div class="row">
+<strong>Eyes</strong>
+<span>Baby Blue</span>
+</div>
+
+<div class="row">
+<strong>Distinguishing Mark</strong>
+<span>Scar over right eye</span>
+</div>
+
+</section>
+
+</div>
+
+<h2 class="title">Current Appearance</h2>
+
+<div class="appearance">
+<!--
+Replace this section with:
+
+<img class="appearance-image"
+     src="elise.png"
+     alt="Elise Belmont">
+-->
+</div>
+
+<h2 class="title">Background</h2>
+
+<section class="section">
+
+<p>
+Upon Elise Belmont's birth, her mother, Klara Frenken, was killed in a
+motor vehicle accident which also resulted in Rios Belmont sustaining
+serious injuries.
+</p>
+
+<p>
+Following his recovery, Rios began blaming himself for the incident and
+distanced himself from Elise, believing that he could prevent her from
+suffering as Klara had.
+</p>
+
+<p>
+Elise eventually left high school and joined the military, following a
+path similar to her father. Her service was ultimately terminated
+following concerns regarding her mental stability.
+</p>
+
+<p>
+After leaving military service, Elise began working as a freelance
+contractor while independently searching for information concerning
+her father.
+</p>
+
+<p>
+Her investigation gradually brought her toward Alaska, where Foundation
+personnel discovered her approaching an area associated with the Veil.
+</p>
+
+<p>
+Following assessment and documentation of her relationship with
+Foundation operative <strong>"Felwinter"</strong>, Elise was accepted
+into Foundation service as a General Security Operator.
+</p>
+
+<p>
+She was initially stationed at Site-[REDACTED] before being transferred
+to Site-66 following her father's retirement.
+</p>
+
+<div class="handwritten">
+"I'll finish what he couldn't."
+</div>
+
+</section>
+
+<div class="corruption">
+
+ARCHIVAL WARNING // FILE DAMAGE DETECTED<br><br>
+
+SUBJECT: BELMONT, ELISE<br>
+CALLSIGN: "FROSTMIRE"<br>
+STATUS: ACTIVE<br><br>
+
+ENVIRONMENTAL DAMAGE:
+SNOW / ICE / MOISTURE / BIOLOGICAL CONTAMINATION<br><br>
+
+CROSS-REFERENCE:
+BELMONT // RIOS // "FELWINTER"<br><br>
+
+FILE INTEGRITY: 63%
+
+</div>
+
+<footer>
+
+<div>SCP FOUNDATION // SITE-66</div>
+<div class="warning">UNAUTHORIZED REPRODUCTION PROHIBITED</div>
+<div>PAGE 01 // PERSONNEL</div>
+
+</footer>
+
+</main>
+
+</body>
+</html>
