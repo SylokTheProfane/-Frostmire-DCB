@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +10,36 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&family=Share+Tech+Mono&display=swap');
 
+/* =========================================================
+   SCP FOUNDATION // RECOVERED PERSONNEL FILE
+   SUBJECT: ELISE BELMONT // "FROSTMIRE"
+
+   CONDITION:
+   SEVERE ENVIRONMENTAL DAMAGE
+   SNOW / ICE / MOISTURE / BLOOD CONTAMINATION
+   ========================================================= */
+
 :root {
-    --paper:#d9ddd8;
-    --paper-dark:#b8bfbc;
-    --ice:#dceff2;
-    --ice-dark:#91aeb5;
-    --blood:#720e14;
-    --blood-dark:#3b080c;
-    --blood-bright:#a51d26;
-    --ink:#101619;
-    --faded:#394347;
+    --paper:#c9ccc7;
+    --paper-light:#dfe2dd;
+    --paper-dark:#898f8c;
+
+    --ice:#dce9e8;
+    --ice-dark:#81999c;
+
+    --blood:#641015;
+    --blood-dark:#300609;
+    --blood-bright:#941b24;
+    --blood-old:#431014;
+
+    --ink:#111516;
+    --faded:#424b4c;
+    --black:#080a0a;
 }
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 * {
     box-sizing:border-box;
@@ -34,203 +54,437 @@ body {
     min-height:100vh;
 
     background:
-        radial-gradient(circle at 20% 10%,rgba(255,255,255,.12),transparent 25%),
-        radial-gradient(circle at 80% 90%,rgba(100,120,125,.18),transparent 30%),
-        linear-gradient(135deg,#171c1d,#080b0c 55%,#151919);
+        radial-gradient(
+            ellipse at 15% 20%,
+            rgba(220,235,238,.08),
+            transparent 25%
+        ),
+        radial-gradient(
+            ellipse at 85% 75%,
+            rgba(110,125,128,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #111515 0%,
+            #050707 45%,
+            #161b1b 100%
+        );
 
     color:var(--ink);
     font-family:"Special Elite",monospace;
+
+    overflow-x:hidden;
 }
+
+/* =========================================================
+   SNOW / DUST
+   ========================================================= */
 
 body::before {
     content:"";
+
     position:fixed;
     inset:0;
+
     pointer-events:none;
-    z-index:50;
+    z-index:100;
 
     background:
-        radial-gradient(circle at 10% 20%,rgba(255,255,255,.15) 0 2px,transparent 3px),
-        radial-gradient(circle at 30% 80%,rgba(255,255,255,.13) 0 1px,transparent 3px),
-        radial-gradient(circle at 70% 30%,rgba(255,255,255,.12) 0 2px,transparent 4px),
-        radial-gradient(circle at 90% 70%,rgba(255,255,255,.1) 0 2px,transparent 4px);
+        radial-gradient(
+            circle at 7% 13%,
+            rgba(255,255,255,.17) 0 2px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 23% 81%,
+            rgba(255,255,255,.12) 0 1px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 51% 34%,
+            rgba(255,255,255,.10) 0 2px,
+            transparent 4px
+        ),
+        radial-gradient(
+            circle at 78% 17%,
+            rgba(255,255,255,.14) 0 2px,
+            transparent 4px
+        ),
+        radial-gradient(
+            circle at 94% 73%,
+            rgba(255,255,255,.09) 0 2px,
+            transparent 4px
+        );
 
-    background-size:180px 180px,230px 230px,270px 270px,320px 320px;
-    opacity:.45;
+    background-size:
+        170px 170px,
+        230px 230px,
+        310px 310px,
+        260px 260px,
+        360px 360px;
+
+    opacity:.55;
 }
+
+/* =========================================================
+   FILE
+   ========================================================= */
 
 .file {
     position:relative;
+
     width:min(1180px,94%);
     margin:50px auto;
+
     padding:50px 60px 65px;
 
     background:
-        linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,0)),
+        linear-gradient(
+            115deg,
+            rgba(255,255,255,.20),
+            transparent 22%,
+            rgba(50,55,54,.08) 70%
+        ),
         var(--paper);
 
     box-shadow:
-        0 30px 70px rgba(0,0,0,.75),
-        0 0 0 8px rgba(40,45,46,.35);
+        0 30px 80px rgba(0,0,0,.85),
+        0 0 0 7px rgba(20,24,24,.45),
+        inset 0 0 80px rgba(40,45,45,.20);
 
-    transform:rotate(-.35deg);
+    transform:rotate(-.45deg);
+
     overflow:hidden;
 }
 
 .file::before {
     content:"";
+
     position:absolute;
     inset:0;
+
     pointer-events:none;
 
-    background:repeating-linear-gradient(
-        0deg,
-        transparent 0,
-        rgba(0,0,0,.025) 1px,
-        transparent 2px
-    );
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            rgba(0,0,0,.035) 1px,
+            transparent 2px
+        );
+
+    opacity:.7;
 }
 
 .file::after {
     content:"";
+
     position:absolute;
-    top:-40px;
-    right:-20px;
-    width:300px;
-    height:260px;
 
-    background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.95),
-        rgba(197,222,226,.75),
-        rgba(145,174,181,.3),
-        transparent 70%
-    );
+    top:-100px;
+    right:-80px;
 
-    clip-path:polygon(
-        20% 0,100% 0,100% 70%,
-        80% 55%,60% 72%,45% 45%,25% 55%
-    );
+    width:420px;
+    height:520px;
 
-    opacity:.8;
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 20%,
+            rgba(80,8,14,.55),
+            rgba(70,8,13,.30) 32%,
+            transparent 68%
+        );
+
+    filter:blur(8px);
+
+    transform:rotate(13deg);
+
+    opacity:.75;
 }
+
+/* =========================================================
+   SNOW / ICE
+   ========================================================= */
 
 .snow-top {
     position:absolute;
+
     top:0;
-    left:0;
-    width:100%;
-    height:25px;
+    left:-2%;
 
-    background:linear-gradient(
-        to bottom,
-        white,
-        rgba(215,236,239,.7),
-        transparent
-    );
+    width:104%;
+    height:50px;
+
+    z-index:4;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.98),
+            rgba(226,239,241,.90) 38%,
+            rgba(186,207,210,.55) 65%,
+            transparent
+        );
 
     clip-path:polygon(
-        0 0,100% 0,100% 55%,
-        92% 35%,83% 65%,70% 35%,
-        58% 70%,44% 40%,31% 68%,
-        18% 32%,7% 60%,0 35%
+        0 0,
+        100% 0,
+        100% 58%,
+        94% 46%,
+        88% 74%,
+        80% 48%,
+        72% 82%,
+        63% 52%,
+        55% 72%,
+        45% 43%,
+        37% 79%,
+        27% 49%,
+        18% 73%,
+        9% 43%,
+        0 64%
+    );
+
+    filter:drop-shadow(
+        0 4px 3px rgba(50,60,60,.25)
     );
 }
 
-.blood {
+.ice-patch {
     position:absolute;
+
     top:20px;
-    right:90px;
+    left:20px;
 
-    width:80px;
-    height:400px;
+    width:330px;
+    height:230px;
 
-    background:linear-gradient(
-        to bottom,
-        rgba(114,14,20,.75),
-        rgba(114,14,20,.3),
-        transparent
-    );
+    background:
+        linear-gradient(
+            135deg,
+            rgba(240,250,251,.72),
+            rgba(184,211,214,.42),
+            transparent 70%
+        );
 
     clip-path:polygon(
-        30% 0,70% 0,75% 30%,
-        60% 52%,80% 100%,
-        40% 78%,25% 100%,35% 45%
+        5% 0,
+        80% 8%,
+        100% 35%,
+        83% 57%,
+        92% 100%,
+        42% 83%,
+        0 100%,
+        13% 45%
     );
 
-    opacity:.3;
-    transform:rotate(5deg);
+    opacity:.7;
+
+    pointer-events:none;
 }
+
+/* =========================================================
+   BLOOD
+   ========================================================= */
+
+.blood-drip {
+    position:absolute;
+
+    z-index:5;
+
+    top:0;
+    right:105px;
+
+    width:115px;
+    height:440px;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(92,12,18,.80),
+            rgba(75,8,14,.65) 35%,
+            rgba(60,7,12,.30) 72%,
+            transparent
+        );
+
+    clip-path:polygon(
+        8% 0,
+        35% 0,
+        31% 18%,
+        43% 33%,
+        35% 49%,
+        62% 62%,
+        52% 100%,
+        42% 100%,
+        39% 73%,
+        24% 61%,
+        29% 42%,
+        16% 27%
+    );
+
+    opacity:.75;
+
+    transform:rotate(4deg);
+}
+
+.blood-drop {
+    position:absolute;
+
+    width:25px;
+    height:42px;
+
+    border-radius:60% 40% 55% 45%;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--blood-bright),
+            var(--blood-dark)
+        );
+
+    opacity:.75;
+
+    transform:rotate(15deg);
+
+    pointer-events:none;
+}
+
+.drop-one {
+    right:340px;
+    top:190px;
+}
+
+.drop-two {
+    left:70px;
+    top:530px;
+
+    width:17px;
+    height:31px;
+}
+
+.drop-three {
+    right:170px;
+    bottom:280px;
+
+    width:14px;
+    height:25px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 header {
     position:relative;
-    z-index:2;
+    z-index:10;
 
     border-bottom:3px solid var(--blood);
+
     padding-bottom:24px;
     margin-bottom:28px;
 }
 
 .classification {
     display:inline-block;
+
     padding:7px 13px;
 
-    background:var(--blood);
+    background:
+        linear-gradient(
+            90deg,
+            var(--blood-dark),
+            var(--blood)
+        );
+
     color:white;
 
     font-family:"Share Tech Mono",monospace;
+
     font-size:12px;
+
     letter-spacing:2px;
+
+    box-shadow:
+        5px 4px 0 rgba(40,5,8,.25);
 }
 
 h1 {
     margin:18px 0 0;
 
     font-size:clamp(38px,6vw,70px);
+
     letter-spacing:3px;
+
+    color:#151a1a;
 }
 
 .codename {
     display:inline-block;
 
     font-family:"Caveat",cursive;
-    font-size:36px;
+
+    font-size:40px;
 
     color:var(--blood);
-    transform:rotate(-3deg);
+
+    transform:rotate(-4deg);
 }
 
 .meta {
     display:flex;
     flex-wrap:wrap;
+
     gap:10px 25px;
 
     margin-top:18px;
 
     font-family:"Share Tech Mono",monospace;
+
     font-size:12px;
 }
 
 .status {
     background:var(--blood);
+
     color:white;
+
     padding:5px 10px;
 
-    animation:glitch 2.5s infinite;
+    animation:damaged-status 3.2s infinite;
 }
 
-@keyframes glitch {
-    0%,90%,100% {opacity:1;}
-    92% {opacity:.3;transform:translateX(3px);}
-    94% {opacity:.8;transform:translateX(-2px);}
+@keyframes damaged-status {
+
+    0%,85%,100% {
+        opacity:1;
+    }
+
+    87% {
+        opacity:.45;
+        transform:translateX(2px);
+    }
+
+    89% {
+        opacity:.9;
+        transform:translateX(-1px);
+    }
 }
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 nav {
     position:relative;
-    z-index:5;
+    z-index:20;
 
     display:flex;
     flex-wrap:wrap;
+
     gap:10px;
 
     margin:25px 0 35px;
@@ -239,43 +493,82 @@ nav {
 nav a {
     padding:10px 15px;
 
-    color:white;
-    background:#252d2f;
+    color:#edf1ef;
 
-    border:1px solid #4b5658;
+    background:
+        linear-gradient(
+            135deg,
+            #252b2c,
+            #111516
+        );
+
+    border:1px solid #4b5354;
+
     text-decoration:none;
 
     font-family:"Share Tech Mono",monospace;
+
     font-size:12px;
+
     letter-spacing:1px;
+
+    transition:.2s ease;
 }
 
 nav a:hover,
 nav a.active {
     background:var(--blood);
-    border-color:var(--blood);
+
+    border-color:var(--blood-bright);
+
+    transform:translateY(-1px);
 }
 
+/* =========================================================
+   QUOTE
+   ========================================================= */
+
 .quote {
-    padding:20px 30px;
+    position:relative;
+
+    padding:22px 30px;
+
     margin:25px 0 35px;
 
-    border-left:5px solid var(--blood);
-    background:rgba(255,255,255,.25);
+    border-left:6px solid var(--blood);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(100,15,20,.12),
+            rgba(255,255,255,.18)
+        );
+
+    box-shadow:
+        5px 5px 0 rgba(60,10,15,.08);
 
     font-family:"Caveat",cursive;
-    font-size:27px;
 
-    transform:rotate(-.5deg);
+    font-size:29px;
+
+    transform:rotate(-.7deg);
 }
 
 .quote small {
     display:block;
+
     margin-top:8px;
 
     font-family:"Special Elite",monospace;
+
     font-size:11px;
+
+    color:var(--faded);
 }
+
+/* =========================================================
+   TITLES
+   ========================================================= */
 
 .title {
     display:inline-block;
@@ -287,7 +580,9 @@ nav a.active {
     border-bottom:2px solid var(--blood);
 
     font-size:22px;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 
     transform:rotate(-1deg);
@@ -295,44 +590,65 @@ nav a.active {
 
 .title::after {
     content:" ///";
+
     color:var(--blood);
 }
 
+/* =========================================================
+   INFORMATION GRID
+   ========================================================= */
+
 .grid {
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:25px;
 }
 
 .card {
+    position:relative;
+
     padding:25px;
 
-    background:rgba(255,255,255,.22);
-    border:1px solid rgba(30,40,42,.4);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.30),
+            rgba(150,160,158,.12)
+        );
 
-    box-shadow:8px 8px 0 rgba(54,64,66,.12);
+    border:1px solid rgba(30,40,42,.45);
+
+    box-shadow:
+        8px 8px 0 rgba(54,64,66,.13);
+
+    overflow:hidden;
 }
 
 .card:nth-child(even) {
-    transform:rotate(.5deg);
+    transform:rotate(.55deg);
 }
 
 .card:nth-child(odd) {
-    transform:rotate(-.4deg);
+    transform:rotate(-.45deg);
 }
 
 .card h3 {
     margin-top:0;
 
     color:var(--blood);
+
     font-size:17px;
 
     border-bottom:1px dashed var(--blood);
+
     padding-bottom:8px;
 }
 
 .row {
     margin:12px 0;
+
     line-height:1.5;
 }
 
@@ -340,8 +656,11 @@ nav a.active {
     display:block;
 
     font-family:"Share Tech Mono",monospace;
+
     font-size:10px;
+
     letter-spacing:1px;
+
     text-transform:uppercase;
 }
 
@@ -349,44 +668,351 @@ nav a.active {
     color:var(--faded);
 }
 
-.appearance {
-    height:470px;
+/* =========================================================
+   PHOTOGRAPHIC ARCHIVE
+   ========================================================= */
+
+.photo-archive {
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+    gap:32px;
+
+    margin-top:15px;
+}
+
+/* Individual photograph */
+
+.photo-card {
+    position:relative;
+
+    padding:13px 13px 18px;
+
+    background:#d5d6d1;
+
+    border:1px solid #858b88;
+
+    box-shadow:
+        8px 10px 0 rgba(25,30,30,.18),
+        inset 0 0 18px rgba(0,0,0,.12);
+
+    overflow:hidden;
+}
+
+/* Alternating photograph angles */
+
+.photo-card:nth-child(odd) {
+    transform:rotate(-1.1deg);
+}
+
+.photo-card:nth-child(even) {
+    transform:rotate(1.2deg);
+}
+
+.photo-card:nth-child(3n) {
+    transform:rotate(-.4deg);
+}
+
+/* Photograph itself */
+
+.photo-frame {
+    position:relative;
+
+    width:100%;
+
+    min-height:320px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
+    background:#101516;
+
+    border:7px solid #24292a;
+
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.8);
+}
+
+.photo-frame img {
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    min-height:320px;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    background:#101516;
+
+    filter:
+        contrast(1.08)
+        saturate(.72)
+        brightness(.92);
+}
+
+/* Frost on photograph */
+
+.photo-frame::before {
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(242,250,251,.55),
+            transparent 18%,
+            transparent 65%,
+            rgba(215,235,238,.30)
+        );
+
+    opacity:.75;
+}
+
+/* Blood smear on photographs */
+
+.photo-frame::after {
+    content:"";
+
+    position:absolute;
+
+    z-index:3;
+
+    left:-25px;
+    bottom:15px;
+
+    width:160px;
+    height:45px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(89,8,14,.62),
+            rgba(65,7,11,.30),
+            transparent
+        );
+
+    filter:blur(4px);
+
+    transform:rotate(-8deg);
+
+    opacity:.7;
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   PHOTO LABEL
+   ========================================================= */
+
+.photo-label {
+    margin-top:13px;
+
+    padding:5px 8px;
+
+    display:inline-block;
+
+    color:white;
+
+    background:var(--blood);
+
+    font-family:"Share Tech Mono",monospace;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+/* Caption */
+
+.photo-caption {
+    margin:12px 3px 0;
+
+    color:#222829;
+
+    font-family:"Caveat",cursive;
+
+    font-size:24px;
+
+    line-height:1.15;
+}
+
+/* Archival details */
+
+.photo-meta {
+    margin-top:9px;
+
+    padding-top:8px;
+
+    border-top:1px dashed #777e7d;
+
+    color:#525a5b;
+
+    font-family:"Share Tech Mono",monospace;
+
+    font-size:9px;
+
+    line-height:1.6;
+
+    letter-spacing:.4px;
+}
+
+/* =========================================================
+   CURRENT APPEARANCE / FEATURED IMAGE
+   ========================================================= */
+
+.featured-photo {
     position:relative;
+
+    width:100%;
+
+    min-height:570px;
+
+    padding:14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
     overflow:hidden;
 
     background:
-        linear-gradient(145deg,#202829,#68777a,#b7c8ca);
+        linear-gradient(
+            145deg,
+            #111718,
+            #3d4849 45%,
+            #89999b
+        );
 
-    border:8px solid #242a2b;
+    border:8px solid #222829;
 
     box-shadow:
-        inset 0 0 30px rgba(0,0,0,.65),
-        10px 12px 0 rgba(0,0,0,.18);
+        inset 0 0 35px rgba(0,0,0,.80),
+        inset 0 0 8px rgba(255,255,255,.10),
+        12px 14px 0 rgba(0,0,0,.22);
 
-    color:white;
-    text-align:center;
+    transform:rotate(.35deg);
 }
 
-.appearance-image {
+.featured-photo img {
+    display:block;
+
     width:100%;
     height:100%;
-    object-fit:cover;
+
+    min-height:540px;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    background:#101516;
+
+    filter:
+        contrast(1.06)
+        saturate(.78)
+        brightness(.92);
 }
+
+.featured-photo::before {
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:3;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            125deg,
+            rgba(235,248,250,.65),
+            transparent 18%,
+            transparent 72%,
+            rgba(220,240,242,.38)
+        );
+
+    opacity:.8;
+}
+
+.featured-photo::after {
+    content:"";
+
+    position:absolute;
+
+    z-index:4;
+
+    right:8%;
+    top:-15px;
+
+    width:50px;
+    height:190px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(96,10,17,.75),
+            rgba(75,7,12,.45),
+            transparent
+        );
+
+    clip-path:polygon(
+        25% 0,
+        85% 0,
+        76% 34%,
+        91% 61%,
+        65% 100%,
+        51% 68%,
+        31% 82%,
+        40% 42%
+    );
+
+    opacity:.8;
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
 
 .section {
     position:relative;
 
-    padding:25px 30px;
+    padding:28px 32px;
 
-    background:rgba(255,255,255,.2);
-    border-left:3px solid var(--blood);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.22),
+            rgba(130,140,138,.10)
+        );
+
+    border-left:4px solid var(--blood);
 
     line-height:1.8;
+
+    box-shadow:
+        6px 7px 0 rgba(40,48,48,.08);
 }
 
 .handwritten {
@@ -397,60 +1023,97 @@ nav a.active {
     color:var(--blood);
 
     font-family:"Caveat",cursive;
-    font-size:25px;
 
-    transform:rotate(-2deg);
+    font-size:27px;
+
+    transform:rotate(-3deg);
 }
 
+/* =========================================================
+   ARCHIVAL DAMAGE
+   ========================================================= */
+
 .corruption {
-    margin-top:40px;
-    padding:22px;
+    position:relative;
+
+    margin-top:45px;
+
+    padding:24px;
 
     border:2px solid var(--blood);
 
     color:var(--blood);
 
-    background:repeating-linear-gradient(
-        -7deg,
-        rgba(114,14,20,.08) 0,
-        rgba(114,14,20,.08) 2px,
-        transparent 2px,
-        transparent 9px
-    );
+    background:
+        repeating-linear-gradient(
+            -8deg,
+            rgba(114,14,20,.09) 0,
+            rgba(114,14,20,.09) 2px,
+            transparent 2px,
+            transparent 10px
+        );
 
     font-family:"Share Tech Mono",monospace;
+
     font-size:11px;
+
     letter-spacing:1px;
+
+    box-shadow:
+        inset 0 0 20px rgba(90,10,15,.08);
 }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer {
     margin-top:55px;
+
     padding-top:18px;
 
     border-top:2px solid #4d5556;
 
     display:flex;
+
     justify-content:space-between;
+
     flex-wrap:wrap;
+
     gap:15px;
 
     font-family:"Share Tech Mono",monospace;
+
     font-size:10px;
 }
 
 .warning {
     color:var(--blood);
+
     font-weight:bold;
 }
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media(max-width:800px) {
+
     .file {
         width:96%;
+
         margin:20px auto;
+
         padding:35px 24px 50px;
+
+        transform:none;
     }
 
     .grid {
+        grid-template-columns:1fr;
+    }
+
+    .photo-archive {
         grid-template-columns:1fr;
     }
 
@@ -458,9 +1121,30 @@ footer {
         font-size:40px;
     }
 
-    .blood {
+    .blood-drip {
         right:10px;
-        opacity:.15;
+
+        opacity:.35;
+    }
+
+    .featured-photo {
+        min-height:400px;
+    }
+
+    .featured-photo img {
+        min-height:370px;
+    }
+
+    .photo-frame {
+        min-height:300px;
+    }
+
+    .photo-frame img {
+        min-height:280px;
+    }
+
+    .quote {
+        font-size:24px;
     }
 }
 </style>
@@ -470,214 +1154,545 @@ footer {
 
 <main class="file">
 
-<div class="snow-top"></div>
-<div class="blood"></div>
+    <!-- Environmental damage -->
+    <div class="snow-top"></div>
+    <div class="ice-patch"></div>
 
-<header>
+    <div class="blood-drip"></div>
 
-<div class="classification">
-SCP FOUNDATION // GENERAL SECURITY DEPARTMENT
-</div>
+    <div class="blood-drop drop-one"></div>
+    <div class="blood-drop drop-two"></div>
+    <div class="blood-drop drop-three"></div>
 
-<h1>ELISE BELMONT</h1>
 
-<div class="codename">
-"Frostmire"
-</div>
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
-<div class="meta">
-<span class="status">● ACTIVE</span>
-<span>SITE-66 // PERSONNEL RECORD</span>
-<span>FILE ID: EB-072405</span>
-<span>CLASSIFICATION: LEVEL 3</span>
-</div>
+    <header>
 
-</header>
+        <div class="classification">
+            SCP FOUNDATION // GENERAL SECURITY DEPARTMENT
+        </div>
 
-<nav>
-<a class="active" href="index.html">PERSONNEL FILE</a>
-<a href="psychological.html">PSYCHOLOGICAL</a>
-<a href="relations.html">RELATIONS</a>
-</nav>
+        <h1>ELISE BELMONT</h1>
 
-<div class="quote">
-"Even the harshest winters cannot freeze the heart."
-<small>— Inscription found upon subject's personal knife</small>
-</div>
+        <div class="codename">
+            "Frostmire"
+        </div>
 
-<h2 class="title">Personnel Identification</h2>
+        <div class="meta">
 
-<div class="grid">
+            <span class="status">
+                ● ACTIVE
+            </span>
 
-<section class="card">
+            <span>
+                SITE-66 // PERSONNEL RECORD
+            </span>
 
-<h3>Identity</h3>
+            <span>
+                FILE ID: EB-072405
+            </span>
 
-<div class="row">
-<strong>Legal Name</strong>
-<span>Elise Belmont</span>
-</div>
+            <span>
+                CLASSIFICATION: LEVEL 3
+            </span>
 
-<div class="row">
-<strong>Callsign</strong>
-<span>"Frostmire"</span>
-</div>
+        </div>
 
-<div class="row">
-<strong>Status</strong>
-<span>ACTIVE</span>
-</div>
+    </header>
 
-<div class="row">
-<strong>Gender</strong>
-<span>Female</span>
-</div>
 
-<div class="row">
-<strong>Date of Birth</strong>
-<span>07/24/2005</span>
-</div>
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
 
-<div class="row">
-<strong>Place of Birth</strong>
-<span>Colville Lake, Northwest Territories, Canada</span>
-</div>
+    <nav>
 
-<div class="row">
-<strong>Occupation</strong>
-<span>General Security Operator</span>
-</div>
+        <a class="active" href="index.html">
+            PERSONNEL FILE
+        </a>
 
-</section>
+        <a href="psychological.html">
+            PSYCHOLOGICAL
+        </a>
 
-<section class="card">
+        <a href="relations.html">
+            RELATIONS
+        </a>
 
-<h3>Physical Record</h3>
+    </nav>
 
-<div class="row">
-<strong>Blood Type</strong>
-<span>A POS</span>
-</div>
 
-<div class="row">
-<strong>Height</strong>
-<span>5'11"</span>
-</div>
+    <!-- =====================================================
+         QUOTE
+         ===================================================== -->
 
-<div class="row">
-<strong>Weight</strong>
-<span>180 lbs</span>
-</div>
+    <div class="quote">
 
-<div class="row">
-<strong>Body Type</strong>
-<span>Mesomorph</span>
-</div>
+        "Even the harshest winters cannot freeze the heart."
 
-<div class="row">
-<strong>Hair</strong>
-<span>Black with dark red tips</span>
-</div>
+        <small>
+            — Inscription found upon subject's personal knife
+        </small>
 
-<div class="row">
-<strong>Eyes</strong>
-<span>Dark Green</span>
-</div>
+    </div>
 
-<div class="row">
-<strong>Distinguishing Mark</strong>
-<span>Scar over right eye</span>
-</div>
 
-</section>
+    <!-- =====================================================
+         PERSONNEL IDENTIFICATION
+         ===================================================== -->
 
-</div>
+    <h2 class="title">
+        Personnel Identification
+    </h2>
 
-<h2 class="title">Current Appearance</h2>
+    <div class="grid">
 
-<div class="appearance-image">
+        <section class="card">
 
-<img class="appearance-image"
-     src="frostmire.jpg"
-     alt="Elise Belmont">
+            <h3>Identity</h3>
 
-</div>
+            <div class="row">
+                <strong>Legal Name</strong>
+                <span>Elise Belmont</span>
+            </div>
 
-<h2 class="title">Background</h2>
+            <div class="row">
+                <strong>Callsign</strong>
+                <span>"Frostmire"</span>
+            </div>
 
-<section class="section">
+            <div class="row">
+                <strong>Status</strong>
+                <span>ACTIVE</span>
+            </div>
 
-<p>
-Upon Elise Belmont's birth, her mother, Klara Frenken, was killed in a
-motor vehicle accident which also resulted in Rios Belmont sustaining
-serious injuries.
-</p>
+            <div class="row">
+                <strong>Gender</strong>
+                <span>Female</span>
+            </div>
 
-<p>
-Following his recovery, Rios began blaming himself for the incident and
-distanced himself from Elise, believing that he could prevent her from
-suffering as Klara had.
-</p>
+            <div class="row">
+                <strong>Date of Birth</strong>
+                <span>07/24/2005</span>
+            </div>
 
-<p>
-Elise eventually left high school and joined the military, following a
-path similar to her father. Her service was ultimately terminated
-following concerns regarding her mental stability.
-</p>
+            <div class="row">
+                <strong>Place of Birth</strong>
+                <span>
+                    Colville Lake, Northwest Territories, Canada
+                </span>
+            </div>
 
-<p>
-After leaving military service, Elise began working as a freelance
-contractor while independently searching for information concerning
-her father.
-</p>
+            <div class="row">
+                <strong>Occupation</strong>
+                <span>
+                    General Security Operator
+                </span>
+            </div>
 
-<p>
-Her investigation gradually brought her toward Alaska, where Foundation
-personnel discovered her approaching an area associated with the Veil.
-</p>
+        </section>
 
-<p>
-Following assessment and documentation of her relationship with
-Foundation operative <strong>"Felwinter"</strong>, Elise was accepted
-into Foundation service as a General Security Operator.
-</p>
 
-<p>
-She was initially stationed at Site-[REDACTED] before being transferred
-to Site-66 following her father's retirement.
-</p>
+        <section class="card">
 
-<div class="handwritten">
-"I'll finish what he couldn't."
-</div>
+            <h3>Physical Record</h3>
 
-</section>
+            <div class="row">
+                <strong>Blood Type</strong>
+                <span>A POS</span>
+            </div>
 
-<div class="corruption">
+            <div class="row">
+                <strong>Height</strong>
+                <span>5'11"</span>
+            </div>
 
-ARCHIVAL WARNING // FILE DAMAGE DETECTED<br><br>
+            <div class="row">
+                <strong>Weight</strong>
+                <span>180 lbs</span>
+            </div>
 
-SUBJECT: BELMONT, ELISE<br>
-CALLSIGN: "FROSTMIRE"<br>
-STATUS: ACTIVE<br><br>
+            <div class="row">
+                <strong>Body Type</strong>
+                <span>Mesomorph</span>
+            </div>
 
-ENVIRONMENTAL DAMAGE:
-SNOW / ICE / MOISTURE / BIOLOGICAL CONTAMINATION<br><br>
+            <div class="row">
+                <strong>Hair</strong>
+                <span>
+                    Black with dark red tips
+                </span>
+            </div>
 
-CROSS-REFERENCE:
-BELMONT // RIOS // "FELWINTER"<br><br>
+            <div class="row">
+                <strong>Eyes</strong>
+                <span>
+                    Dark Green
+                </span>
+            </div>
 
-FILE INTEGRITY: 63%
+            <div class="row">
+                <strong>Distinguishing Mark</strong>
+                <span>
+                    Scar over right eye
+                </span>
+            </div>
 
-</div>
+        </section>
 
-<footer>
+    </div>
 
-<div>SCP FOUNDATION // SITE-66</div>
-<div class="warning">UNAUTHORIZED REPRODUCTION PROHIBITED</div>
-<div>PAGE 01 // PERSONNEL</div>
 
-</footer>
+    <!-- =====================================================
+         FEATURED CURRENT APPEARANCE
+         ===================================================== -->
+
+    <h2 class="title">
+        Current Appearance
+    </h2>
+
+    <div class="featured-photo">
+
+        <img
+            src="frostmire.jpg"
+            alt="Elise Belmont — Current Appearance"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         PHOTOGRAPHIC ARCHIVE
+         ===================================================== -->
+
+    <h2 class="title">
+        Photographic Archive
+    </h2>
+
+    <div class="photo-archive">
+
+
+        <!-- PHOTO 01 -->
+
+        <article class="photo-card">
+
+            <div class="photo-frame">
+
+                <img
+                    src="frostmire-01.jpg"
+                    alt="Frostmire — Foundation Identification Photograph"
+                >
+
+            </div>
+
+            <div class="photo-label">
+                ARCHIVE PHOTOGRAPH // 01
+            </div>
+
+            <div class="photo-caption">
+                "Foundation Identification"
+            </div>
+
+            <div class="photo-meta">
+                DATE: 07/24/2025<br>
+                LOCATION: SITE-[REDACTED]<br>
+                SOURCE: GENSEC PERSONNEL ARCHIVE
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 02 -->
+
+        <article class="photo-card">
+
+            <div class="photo-frame">
+
+                <img
+                    src="frostmire-02.jpg"
+                    alt="Frostmire — Field Photograph"
+                >
+
+            </div>
+
+            <div class="photo-label">
+                FIELD RECORD // 02
+            </div>
+
+            <div class="photo-caption">
+                "Northern Operations"
+            </div>
+
+            <div class="photo-meta">
+                DATE: [REDACTED]<br>
+                LOCATION: NORTHERN CANADA<br>
+                SOURCE: FIELD OPERATIONS
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 03 -->
+
+        <article class="photo-card">
+
+            <div class="photo-frame">
+
+                <img
+                    src="frostmire-03.jpg"
+                    alt="Frostmire — GENSEC Equipment Photograph"
+                >
+
+            </div>
+
+            <div class="photo-label">
+                EQUIPMENT RECORD // 03
+            </div>
+
+            <div class="photo-caption">
+                "Pre-Deployment"
+            </div>
+
+            <div class="photo-meta">
+                DATE: [REDACTED]<br>
+                LOCATION: SITE-66 ARMORY<br>
+                SOURCE: GENERAL SECURITY
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 04 -->
+
+        <article class="photo-card">
+
+            <div class="photo-frame">
+
+                <img
+                    src="frostmire-04.jpg"
+                    alt="Frostmire — Personnel Photograph"
+                >
+
+            </div>
+
+            <div class="photo-label">
+                PERSONNEL RECORD // 04
+            </div>
+
+            <div class="photo-caption">
+                "Between Deployments"
+            </div>
+
+            <div class="photo-meta">
+                DATE: [REDACTED]<br>
+                LOCATION: SITE-66<br>
+                SOURCE: PERSONNEL ARCHIVE
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 05 -->
+
+        <article class="photo-card">
+
+            <div class="photo-frame">
+
+                <img
+                    src="frostmire-05.jpg"
+                    alt="Frostmire — Recovered Photograph"
+                >
+
+            </div>
+
+            <div class="photo-label">
+                RECOVERED // 05
+            </div>
+
+            <div class="photo-caption">
+                "Recovered After Incident"
+            </div>
+
+            <div class="photo-meta">
+                DATE: [REDACTED]<br>
+                LOCATION: [REDACTED]<br>
+                CONDITION: WATER / ICE / BLOOD DAMAGE
+            </div>
+
+        </article>
+
+
+        <!-- PHOTO 06 -->
+
+        <article class="photo-card">
+
+            <div class="photo-frame">
+
+                <img
+                    src="frostmire-06.jpg"
+                    alt="Frostmire — Final Recovered Photograph"
+                >
+
+            </div>
+
+            <div class="photo-label">
+                ARCHIVAL EVIDENCE // 06
+            </div>
+
+            <div class="photo-caption">
+                "Do Not Circulate"
+            </div>
+
+            <div class="photo-meta">
+                DATE: UNKNOWN<br>
+                LOCATION: UNKNOWN<br>
+                SOURCE: RECOVERED FOUNDATION MATERIAL
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- =====================================================
+         BACKGROUND
+         ===================================================== -->
+
+    <h2 class="title">
+        Background
+    </h2>
+
+    <section class="section">
+
+        <p>
+            Upon Elise Belmont's birth, her mother, Klara Frenken,
+            was killed in a motor vehicle accident which also
+            resulted in Rios Belmont sustaining serious injuries.
+        </p>
+
+        <p>
+            Following his recovery, Rios began blaming himself
+            for the incident and distanced himself from Elise,
+            believing that he could prevent her from suffering
+            as Klara had.
+        </p>
+
+        <p>
+            Elise eventually left high school and joined the
+            military, following a path similar to her father.
+            Her service was ultimately terminated following
+            concerns regarding her mental stability.
+        </p>
+
+        <p>
+            After leaving military service, Elise began working
+            as a freelance contractor while independently
+            searching for information concerning her father.
+        </p>
+
+        <p>
+            Her investigation gradually brought her toward
+            Alaska, where Foundation personnel discovered her
+            approaching an area associated with the Veil.
+        </p>
+
+        <p>
+            Following assessment and documentation of her
+            relationship with Foundation operative
+            <strong>"Felwinter"</strong>, Elise was accepted
+            into Foundation service as a General Security Operator.
+        </p>
+
+        <p>
+            She was initially stationed at Site-[REDACTED]
+            before being transferred to Site-66 following
+            her father's retirement.
+        </p>
+
+        <div class="handwritten">
+            "I'll finish what he couldn't."
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ARCHIVAL WARNING
+         ===================================================== -->
+
+    <div class="corruption">
+
+        ARCHIVAL WARNING // FILE DAMAGE DETECTED
+
+        <br><br>
+
+        SUBJECT: BELMONT, ELISE
+        <br>
+
+        CALLSIGN: "FROSTMIRE"
+        <br>
+
+        STATUS: ACTIVE
+
+        <br><br>
+
+        ENVIRONMENTAL DAMAGE:
+        <br>
+
+        SNOW / ICE / MOISTURE /
+        BIOLOGICAL CONTAMINATION /
+        BLOOD CONTAMINATION
+
+        <br><br>
+
+        PHOTOGRAPHIC ARCHIVE:
+        <br>
+
+        MULTIPLE RECORDS RECOVERED
+
+        <br><br>
+
+        CROSS-REFERENCE:
+        <br>
+
+        BELMONT // RIOS // "FELWINTER"
+
+        <br><br>
+
+        RECOVERY CONDITION:
+        <br>
+
+        PARTIAL LEGIBILITY // PHYSICAL DEGRADATION
+
+        <br><br>
+
+        FILE INTEGRITY: 63%
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <div>
+            SCP FOUNDATION // SITE-66
+        </div>
+
+        <div class="warning">
+            UNAUTHORIZED REPRODUCTION PROHIBITED
+        </div>
+
+        <div>
+            PAGE 01 // PERSONNEL
+        </div>
+
+    </footer>
 
 </main>
 
